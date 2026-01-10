@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Generate Moodle-compatible HTML code blocks.">
+  <title>Moodle Code Block Generator</title>
+  <meta name="keywords" content="moodle, code block, syntax highlighting, html generator, education, lms, javascript, open source">
+  <meta name="author" content="0x3st3">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#F2F1EA">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Moodle Code Block Generator">
+  <meta property="og:description" content="Generate beautiful, syntax-highlighted HTML code blocks for Moodle lessons.">
+  <meta property="og:image" content="og-image.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Moodle Code Block Generator">
+  <meta name="twitter:description" content="Generate beautiful, syntax-highlighted HTML code blocks for Moodle lessons.">
+  <meta name="twitter:image" content="og-image.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body>
+  <div class="app">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <div class="logo">
+          Moodle Code Block Generator
+        </div>
+        <a href="https://github.com/0x3st3/moodle-html-code-block-generator" target="_blank" rel="noopener noreferrer" class="nav-link">
+          GitHub
+        </a>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+      <div class="container">
+        
+        <section class="intro">
+          <div class="intro-icon">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M24 4.8C24 15.424 32.576 24 43.2 24C32.576 24 24 32.576 24 43.2C24 32.576 15.424 24 4.8 24C15.424 24 24 15.424 24 4.8Z" fill="#c96442"/>
+            </svg>
+          </div>
+          <h1 class="page-title">Generate beautiful code <span class="title-highlight">&lt;blocks&gt;</span> for Moodle.</h1>
+          <p class="page-subtitle">
+            Paste your JavaScript code below to get a syntax-highlighted HTML block ready for your moodle lessons.
+          </p>
+        </section>
+
+        <!-- Input Section -->
+        <div class="card input-card">
+          <div class="card-header">
+            <h2 class="card-title">Input</h2>
+            <div class="input-group">
+              <div class="custom-select-container">
+                <select id="language-select" style="display: none;">
+                  <option value="JavaScript">JavaScript</option>
+                  <option value="TypeScript">TypeScript</option>
+                  <option value="HTML">HTML</option>
+                  <option value="JSX">JSX</option>
+                  <option value="TSX">TSX</option>
+                </select>
+                <!-- Custom UI -->
+                <div class="custom-select-trigger">JavaScript</div>
+                <div class="custom-options">
+                  <span class="custom-option selected" data-value="JavaScript">JavaScript</span>
+                  <span class="custom-option" data-value="TypeScript">TypeScript</span>
+                  <span class="custom-option" data-value="HTML">HTML</span>
+                  <span class="custom-option" data-value="JSX">JSX</span>
+                  <span class="custom-option" data-value="TSX">TSX</span>
+                </div>
+              </div>
+              <input 
+                type="text" 
+                id="filename-input" 
+                class="text-input" 
+                placeholder="Filename (optional)"
+                spellcheck="false"
+              >
+            </div>
+          </div>
+          <textarea 
+            id="code-input" 
+            class="code-editor" 
+            placeholder="// Paste your JavaScript code here...
+            
+function greet(name) {
+  return `Hello, ${name}!`;
+}
+
+console.log(greet('World'));"
+            spellcheck="false"
+          ></textarea>
+          <div class="card-actions">
+            <input type="file" id="file-upload" accept=".js,.mjs,.cjs,.ts,.html,.htm,.jsx,.tsx" style="display: none;">
+            <button id="import-btn" class="btn btn-secondary">
+              Import File
+            </button>
+            <button id="clear-btn" class="btn btn-text">
+              Clear
+            </button>
+            <button id="generate-btn" class="btn btn-primary">
+              Generate HTML
+            </button>
+          </div>
+        </div>
+
+        <!-- Preview Section -->
+        <div class="card preview-card" id="preview-panel" style="display: none;">
+          <div class="card-header">
+            <h2 class="card-title">Preview</h2>
+          </div>
+          <div class="card-body">
+            <div id="preview-container" class="preview-container"></div>
+          </div>
+        </div>
+
+        <!-- Output Section -->
+        <div class="card output-card" id="output-panel" style="display: none;">
+          <div class="card-header">
+            <h2 class="card-title">HTML Output</h2>
+            <button id="copy-btn" class="btn btn-small">
+              Copy HTML
+            </button>
+          </div>
+          <div class="card-body">
+            <textarea 
+              id="html-output" 
+              class="code-editor output-editor" 
+              readonly
+            ></textarea>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer-content">
+        <div class="developer-profile">
+          <img src="https://github.com/0x3st3.png" alt="0x3st3" class="developer-avatar">
+          <span class="developer-info">Developed by <span class="developer-name">0x3st3</span></span>
+          <div class="developer-socials">
+            <a href="https://twitter.com/3st3ban_dev" target="_blank" rel="noopener noreferrer" class="social-link" title="Twitter">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M23.643 4.937c-.835.37-1.732.62-2.675.733.962-.576 1.7-1.49 2.048-2.578-.9.534-1.897.922-2.958 1.13-.85-.904-2.06-1.47-3.4-1.47-2.572 0-4.658 2.086-4.658 4.66 0 .364.042.718.12 1.06-3.873-.195-7.304-2.05-9.602-4.868-.4.69-.63 1.49-.63 2.342 0 1.616.823 3.043 2.072 3.878-.764-.025-1.482-.234-2.11-.583v.06c0 2.257 1.605 4.14 3.737 4.568-.392.106-.803.162-1.227.162-.3 0-.593-.028-.877-.082.593 1.85 2.313 3.198 4.352 3.234-1.595 1.25-3.604 1.995-5.786 1.995-.376 0-.747-.022-1.112-.065 2.062 1.323 4.51 2.093 7.14 2.093 8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602.91-.658 1.7-1.477 2.323-2.41z"/>
+              </svg>
+            </a>
+            <a href="https://github.com/0x3st3" target="_blank" rel="noopener noreferrer" class="social-link" title="GitHub">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+              </svg>
+            </a>
+            <a href="https://3st3ban.dev" target="_blank" rel="noopener noreferrer" class="social-link" title="Portfolio">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <p>
+          Open source under <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener noreferrer" class="footer-link">MIT License</a>.
+        </p>
+      </div>
+    </footer>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
