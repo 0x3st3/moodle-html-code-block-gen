@@ -27,12 +27,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/0x3st3/moodle-html-code-block-generator.git"
+    "url": "https://github.com/0x3st3/moodle-html-code-block-gen.git"
   },
   "bugs": {
-    "url": "https://github.com/0x3st3/moodle-html-code-block-generator/issues"
+    "url": "https://github.com/0x3st3/moodle-html-code-block-gen/issues"
   },
-  "homepage": "https://github.com/0x3st3/moodle-html-code-block-generator#readme",
+  "homepage": "https://github.com/0x3st3/moodle-html-code-block-gen#readme",
   "engines": {
     "node": ">=12.0.0"
   }

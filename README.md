@@ -10,7 +10,7 @@ A tool that generates **Moodle-compatible HTML code blocks** with VS Code Dark+ 
 
 Use the web version directly in your browser - no installation required:
 
-**[Open Moodle Code Block Generator](https://0x3st3.github.io/moodle-html-code-block-generator/)**
+**[Open Moodle Code Block Generator](https://0x3st3.github.io/moodle-html-code-block-gen/)**
 
 ## Features
 
@@ -36,10 +36,10 @@ This project provides two ways to use the generator:
 
 ```bash
 # Clone the repository
-git clone https://github.com/0x3st3/moodle-html-code-block-generator.git
+git clone https://github.com/0x3st3/moodle-html-code-block-gen.git
 
 # Navigate to the directory
-cd moodle-html-code-block-generator
+cd moodle-html-code-block-gen
 ```
 
 No additional dependencies required! Just Node.js.
@@ -48,7 +48,7 @@ No additional dependencies required! Just Node.js.
 
 ### Web App
 
-Simply visit **[https://0x3st3.github.io/moodle-html-code-block-generator/](https://0x3st3.github.io/moodle-html-code-block-generator/)** and:
+Simply visit **[https://0x3st3.github.io/moodle-html-code-block-gen/](https://0x3st3.github.io/moodle-html-code-block-gen/)** and:
 
 1. Paste your code
 2. Select the language

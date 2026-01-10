@@ -5,7 +5,7 @@
  * Generates vanilla Moodle HTML with VS Code Dark+ syntax highlighting
  *
  * @license MIT
- * @see https://github.com/0x3st3/moodle-html-code-block-generator
+ * @see https://github.com/0x3st3/moodle-html-code-block-gen
  */
 
 import fs from "fs";
