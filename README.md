@@ -3,6 +3,7 @@
 A tool that generates **Moodle-compatible HTML code blocks** with VS Code Dark+ syntax highlighting. Perfect for educators and content creators who want beautiful, professional-looking code snippets in their Moodle courses.
 
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat&logo=node.js&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
@@ -15,7 +16,7 @@ Use the web version directly in your browser - no installation required:
 ## Features
 
 - **VS Code Dark+ Theme** - Beautiful syntax highlighting matching the popular VS Code theme
-- **Multi-Language Support** - JavaScript, TypeScript, HTML, JSX, and TSX
+- **Multi-Language Support** - JavaScript, TypeScript, Python, HTML, JSX, and TSX
 - **One-Click Copy** - Copy button that copies only the code (without line numbers)
 - **Line Numbers** - Non-selectable line numbers for easy reference
 - **Custom Filename** - Display the filename inside the code block

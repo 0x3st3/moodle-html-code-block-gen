@@ -104,7 +104,7 @@ ${C.bold}OPTIONS${C.reset}
   ${C.primary}-h, --help${C.reset}              Show this help message
 
 ${C.bold}SUPPORTED LANGUAGES${C.reset}
-  JavaScript, TypeScript, JSX, TSX, HTML
+  JavaScript, TypeScript, Python, JSX, TSX, HTML
 
 ${C.bold}EXAMPLES${C.reset}
   ${C.secondary}# Output to stdout${C.reset}
@@ -175,10 +175,32 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
         return fs.readFileSync(inputFile, "utf-8");
       });
 
-      // 2. Generate HTML
+      // 2. Detect language from file extension
+      const ext = inputFile.split(".").pop().toLowerCase();
+      let language = "JavaScript";
+      switch (ext) {
+        case "ts":
+          language = "TypeScript";
+          break;
+        case "py":
+          language = "Python";
+          break;
+        case "html":
+        case "htm":
+          language = "HTML";
+          break;
+        case "jsx":
+          language = "JSX";
+          break;
+        case "tsx":
+          language = "TSX";
+          break;
+      }
+
+      // 3. Generate HTML
       const html = await withSpinner("Generating code block...", async () => {
         await sleep(400); // Simulate processing time
-        return generateMoodleCodeBlock(code, "JavaScript", filename);
+        return generateMoodleCodeBlock(code, language, filename);
       });
 
       // 3. Output

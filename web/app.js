@@ -116,6 +116,8 @@ function handleFileUpload(e) {
     // Auto-detect language
     if (file.name.endsWith(".ts")) {
       languageSelect.value = "TypeScript";
+    } else if (file.name.endsWith(".py")) {
+      languageSelect.value = "Python";
     } else if (file.name.endsWith(".html") || file.name.endsWith(".htm")) {
       languageSelect.value = "HTML";
     } else if (file.name.endsWith(".jsx")) {
@@ -196,6 +198,19 @@ customOptions.forEach((option) => {
  * Detect language from code content
  */
 function detectLanguage(code) {
+  // Check for Python patterns
+  if (
+    code.includes("def ") ||
+    (code.includes("import ") && !code.includes("import {")) ||
+    (code.includes("from ") && code.includes(" import ")) ||
+    code.includes("print(") ||
+    code.includes("elif ") ||
+    code.includes("self.") ||
+    code.includes("__init__") ||
+    (/^\s*#.*$/m.test(code) && !code.includes("//"))
+  ) {
+    return "Python";
+  }
   if (
     code.includes("<!DOCTYPE html") ||
     code.includes("<html") ||
